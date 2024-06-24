@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "org.varshit.chat";
+option java_outer_classname = "ChatProto";
+
+package chat;
+
+// The request message containing the user's message.
+message ChatMessage {
+  string user = 1;
+  string message = 2;
+  int64 timestamp = 3;
+}
+
+// The response message containing the server's response.
+message ChatResponse {
+  string user = 1;
+  string message = 2;
+  int64 timestamp = 3;
+}
+
+// The chat service definition.
+service ChatService {
+  // A bidirectional streaming RPC.
+  rpc Chat(stream ChatMessage) returns (stream ChatResponse);
+}
